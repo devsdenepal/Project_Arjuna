@@ -1,0 +1,199 @@
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @mixin pseudoElement {
+    content:"";
+    background-color: rgba(36, 188, 170, 0.51);
+    height: 15px;
+    width: 180px;
+    position: absolute;
+  }
+  @mixin Button{
+    background: color(primary, base);
+    border-radius: 5px;
+    padding: 12px 16px;
+    border: none;
+    margin-top: 30px;
+  }
+  @mixin headingh4{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 48px;
+    color: color(secondary, base);
+    position: relative;
+  }
+  
+  @mixin position-center {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+  @mixin container {
+    background: color(white);
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: $shadow;
+  }
+  
+  @mixin truncate {
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    /* autoprefixer: off */
+  }
+  @mixin loader-element($width, $height, $border-radius) {
+    background-color: #dddddd;
+    width: $width;
+    height: $height;
+    border-radius: $border-radius;
+  }
+  @mixin loader-animation {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: preloadAnim;
+    animation-timing-function: linear;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #dddddd 10%,
+      transparent 33%
+    );
+    width: 100%;
+    height: 100%;
+  }
+  @keyframes preloadAnim {
+    0% {
+      background-position: -1200px 0;
+    }
+    100% {
+      background-position: 1200px 0;
+    }
+  }
+
+  // BREAK POINTS FOR THE DEVICES
+  $xs: 480px;
+  $sm: 576px; // FOR SMALL DEVICES == sm
+  $md: 767.98px; // FOR MEDIUM DEVICES == md
+  $lg: 992px; // FOR LARGE DEVICES == lg
+  $xlg: 1200px; // FOR EXTRA LARGE DEVICES == xlg
+  
+  @mixin responsive-for($size) {
+    @if $size == xs {
+      @media all and (max-width: $xs) {
+        @content;
+      }
+    } @else if $size == sm {
+      @media all and (max-width: $sm) {
+        @content;
+      }
+    } @else if $size == md {
+      @media all and (max-width: $md) {
+        @content;
+      }
+    } @else if $size == lg {
+      @media all and (max-width: $lg) {
+        @content;
+      }
+    } @else if $size == xlg {
+      @media all and (max-width: $xlg) {
+        @content;
+      }
+    }
+  }
+
+
+  $spacing-scale: (
+    xxl: 96px,
+    xl: 64px,
+    lg: 48px,
+    md: 32px,
+    sm: 24px,
+    xs: 16px
+  );
+  
+  $directions: (
+    '': '',        
+    't': '-top',
+    'r': '-right',
+    'b': '-bottom',
+    'l': '-left',
+    'x': ('-left', '-right'),
+    'y': ('-top', '-bottom')
+  );
+
+  $breakpoints: (
+  xs: 480px,
+  sm: 576px,
+  md: 767.98px,
+  lg: 992px,
+  xlg: 1200px
+);
+
+
+@mixin responsive-for($size) {
+  @media all and (max-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+  // @each $name, $space in $spacing-scale {
+  //   @each $dir-key, $dir-value in $directions {
+  //     .m#{$dir-key}-#{$name} {
+  //       @if type-of($dir-value) == 'list' {
+  //         @each $sub in $dir-value {
+  //           margin#{$sub}: $space !important;
+  //         }
+  //       } @else {
+  //         margin#{$dir-value}: $space !important;
+  //       }
+  //     }
+  //     .p#{$dir-key}-#{$name} {
+  //       @if type-of($dir-value) == 'list' {
+  //         @each $sub in $dir-value {
+  //           padding#{$sub}: $space !important;
+  //         }
+  //       } @else {
+  //         padding#{$dir-value}: $space !important;
+  //       }
+  //     }
+  
+  //   }
+  // }
+
+  @each $breakpoint, $bp-value in $breakpoints {
+  @each $name, $space in $spacing-scale {
+    @each $dir-key, $dir-value in $directions {
+      .m#{$dir-key}-#{$name}-#{$breakpoint} {
+        @include responsive-for($breakpoint) {
+          @if type-of($dir-value) == 'list' {
+            @each $sub in $dir-value {
+              margin#{$sub}: $space !important;
+            }
+          } @else {
+            margin#{$dir-value}: $space !important;
+          }
+        }
+      }
+
+      .p#{$dir-key}-#{$name}-#{$breakpoint} {
+        @include responsive-for($breakpoint) {
+          @if type-of($dir-value) == 'list' {
+            @each $sub in $dir-value {
+              padding#{$sub}: $space !important;
+            }
+          } @else {
+            padding#{$dir-value}: $space !important;
+          }
+        }
+      }
+    }
+  }
+}

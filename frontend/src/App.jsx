@@ -1,40 +1,22 @@
 import Navbar from "./components/Navbar";
-import ProfileForm from "./components/ProfileForm";
-import ProfileList from "./components/ProfileList";
-import RandomProfile from "./components/RandomProfile";
-import GoogleSearch from "./components/GoogleSearch";
-import DomainInfo from "./components/DomainInfo";
-import NumberInfo from "./components/NumberInfo";
-import IpInfo from "./components/IpInfo";
+import Dashboard from "./pages/dashboard";
+import Profiles from "./pages/Profiles";
+import Search from "./pages/Search";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
+    <Router>
       <Navbar />
-      <div className="container mt-3">
+      <div className="container-fluid">
         <div className="row">
-          <div className="col-md-6">
-            <RandomProfile />
-            <ProfileForm />
-          </div>
-          <div className="col-md-6">
-            <ProfileList />
-          </div>
-        </div>
-        <hr />
-        <div className="row">
-          <div className="col-md-4">
-            <GoogleSearch />
-          </div>
-          <div className="col-md-4">
-            <DomainInfo />
-          </div>
-          <div className="col-md-4">
-            <NumberInfo />
-            <IpInfo />
-          </div>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/profiles" element={<Profiles />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }

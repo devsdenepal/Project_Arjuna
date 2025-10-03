@@ -1,0 +1,27 @@
+.primary-bg{
+    background-color: color(primary, base);
+}
+
+// Dark theme navbar styling
+.navbar {
+  background-color: color(sidebar) !important;
+  border-bottom: 1px solid rgba(61, 220, 151, .2);
+}
+
+.navbar-brand {
+  color: color(text-heading) !important;
+  font-weight: 600;
+}
+
+.navbar-brand:hover {
+  color: color(primary, base) !important;
+}
+
+.navbar .nav-link {
+  color: color(text-paragraph) !important;
+  transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  color: color(primary, base) !important;
+}

@@ -1,0 +1,743 @@
+body {
+  font-size: .875rem;
+  background-color: color(dark-background);
+  color: color(text-heading);
+  overflow-x: hidden;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 0;
+  background-color: color(sidebar) !important;
+  box-shadow: inset -1px 0 0 rgba(61, 220, 151, .1);
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: color(text-paragraph);
+  transition: color 0.2s ease;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: color(text-paragraph);
+}
+
+.sidebar .nav-link.active {
+  color: color(primary, base);
+  background-color: rgba(64, 224, 160, 0.15);
+}
+
+.sidebar .nav-link:hover {
+  color: color(primary, hover);
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+  color: color(text-paragraph);
+}
+
+/*
+ * Navbar
+ */
+
+.navbar {
+  background-color: color(sidebar) !important;
+}
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: color(sidebar);
+  color: color(text-heading) !important;
+  box-shadow: inset -1px 0 0 rgba(61, 220, 151, .2);
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+  background-color: color(dark-background);
+  color: color(text-heading);
+}
+
+.form-control-dark {
+  color: color(text-heading);
+  background-color: color(dark-background);
+  border-color: color(primary, base);
+}
+
+.form-control-dark:focus {
+  border-color: color(primary, base);
+  box-shadow: 0 0 0 3px rgba(61, 220, 151, .25);
+}
+
+.navbar .nav-link {
+  color: color(text-paragraph) !important;
+}
+
+.navbar .nav-link:hover {
+  color: color(primary, base) !important;
+}
+
+/*
+ * Main content area
+ */
+
+main[role="main"] {
+  background-color: color(dark-background);
+  color: color(text-heading);
+  min-height: calc(100vh - 48px);
+  padding: 2rem 1.5rem;
+}
+
+.container-fluid {
+  background-color: color(dark-background);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Add spacing between rows
+.row + .row {
+  margin-top: 2rem;
+}
+
+// Add spacing between columns
+.col-md-6, .col-md-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+/*
+ * Utilities
+ */
+
+.border-top { 
+  border-top: 1px solid rgba(61, 220, 151, .2) !important; 
+}
+
+.border-bottom { 
+  border-bottom: 1px solid rgba(61, 220, 151, .2) !important; 
+}
+
+// Dashboard specific overrides
+.h2 {
+  color: color(text-heading) !important;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+// Dashboard header styling
+.d-flex.justify-content-between {
+  background-color: rgba(33, 38, 45, 0.4);
+  padding: 1.5rem;
+  margin: -2rem -1.5rem 2rem -1.5rem;
+  border-bottom: 2px solid rgba(64, 224, 160, .4);
+}
+
+// Section headers
+h3, h4, h5, h6 {
+  color: color(text-heading);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+// Card and component styling
+.card {
+  background-color: rgba(33, 38, 45, 0.9);
+  border: 1px solid rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: rgba(64, 224, 160, .18);
+  border-bottom: 1px solid rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  font-weight: 600;
+  padding: 0.75rem 1.25rem;
+}
+
+// Form styling for dark theme
+.form-control {
+  background-color: rgba(13, 17, 23, 0.9);
+  border: 1px solid rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  background-color: rgba(13, 17, 23, 1);
+  border-color: color(primary, base);
+  box-shadow: 0 0 0 0.2rem rgba(64, 224, 160, .3);
+  color: color(text-heading);
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: color(text-muted);
+  opacity: 0.8;
+}
+
+// Select styling for form-control (Bootstrap 4 style)
+select.form-control {
+  background-color: rgba(13, 17, 23, 0.9);
+  border: 1px solid rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23C9D1D9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  transition: all 0.2s ease;
+}
+
+// Form-select styling (Bootstrap 5 style) - no custom arrow needed
+.form-select {
+  background-color: rgba(13, 17, 23, 0.9);
+  border: 1px solid rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+  // Remove custom arrow since form-select has its own
+}
+
+.form-select:focus {
+  border-color: color(primary, base);
+  box-shadow: 0 0 0 0.2rem rgba(64, 224, 160, .3);
+  outline: none;
+}
+
+// Profile display styling
+.card-body p {
+  color: color(text-paragraph);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.card-body p b {
+  color: color(text-heading);
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+// Profile information container
+.card-body > div {
+  padding: 0.75rem 0;
+}
+
+.card-body > div:not(:last-child) {
+  border-bottom: 1px solid rgba(64, 224, 160, .25);
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+// Specific styling for profile generation
+.card-body .mb-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-body .mb-2 .form-select {
+  margin-bottom: 0;
+}
+
+// Generated profile display area
+.card-body > div:has(p) {
+  background-color: rgba(33, 38, 45, 0.6);
+  border: 1px solid rgba(64, 224, 160, .3);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+// Profile field styling
+.card-body p {
+  color: color(text-paragraph);
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.card-body p:last-of-type {
+  margin-bottom: 1rem;
+}
+
+.card-body p b {
+  color: color(text-heading);
+  font-weight: 600;
+  margin-right: 0.75rem;
+  min-width: 80px;
+  display: inline-block;
+}
+
+// Button spacing
+.btn + .btn {
+  margin-left: 0.5rem;
+}
+
+.btn {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+// Add subtle animation to cards
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+// Improve HR styling
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(64, 224, 160, .4), transparent);
+  margin: 2rem 0;
+}
+
+// Overview Cards
+.overview-card {
+  background-color: rgba(33, 38, 45, 0.9);
+  border: 1px solid rgba(64, 224, 160, .3);
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.overview-card:hover {
+  border-color: rgba(64, 224, 160, .5);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.overview-card-body {
+  padding: 1.5rem;
+}
+
+.overview-title {
+  color: color(text-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.overview-description {
+  color: color(text-paragraph);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.overview-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.overview-features li {
+  color: color(text-paragraph);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.overview-features li::before {
+  content: "✓";
+  color: color(primary, base);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+// Section Headers
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+  color: color(text-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: color(text-paragraph);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+// Stat Cards
+.stat-card {
+  background-color: rgba(33, 38, 45, 0.8);
+  border: 1px solid rgba(64, 224, 160, .2);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  border-color: rgba(64, 224, 160, .4);
+  transform: translateY(-1px);
+}
+
+.stat-number {
+  color: color(primary, base);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: color(text-heading);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.stat-change {
+  color: color(text-muted);
+  font-size: 0.8rem;
+}
+
+// Activity Feed
+.activity-feed {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(64, 224, 160, .1);
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  color: color(text-heading);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.activity-description {
+  color: color(text-paragraph);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.activity-time {
+  color: color(text-muted);
+  font-size: 0.8rem;
+}
+
+// Quick Actions
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.quick-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(13, 17, 23, 0.6);
+  border: 1px solid rgba(64, 224, 160, .2);
+  border-radius: 0.375rem;
+  text-decoration: none;
+  color: color(text-paragraph);
+  transition: all 0.2s ease;
+}
+
+.quick-action-btn:hover {
+  background-color: rgba(64, 224, 160, .1);
+  border-color: rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  text-decoration: none;
+}
+
+.quick-action-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.quick-action-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+// Search History
+.search-history {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(64, 224, 160, .1);
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.search-type-badge {
+  background-color: color(primary, base);
+  color: color(dark-background);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.search-query {
+  color: color(text-heading);
+  font-weight: 500;
+  flex: 1;
+}
+
+.search-time {
+  color: color(text-muted);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+// Add responsive improvements
+@media (max-width: 768px) {
+  main[role="main"] {
+    padding: 1rem;
+  }
+  
+  .d-flex.justify-content-between {
+    margin: -1rem -1rem 1rem -1rem;
+    padding: 1rem;
+  }
+  
+  .col-md-6, .col-md-4 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .overview-card-body {
+    padding: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1rem;
+  }
+}
+
+// Button styling for dark theme
+.btn-primary {
+  background-color: color(primary, base);
+  border-color: color(primary, base);
+  color: color(dark-background);
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: color(primary, hover);
+  border-color: color(primary, hover);
+  color: color(dark-background);
+}
+
+.btn-warning {
+  background-color: color(secondary, base);
+  border-color: color(secondary, base);
+  color: color(dark-background);
+  font-weight: 500;
+}
+
+.btn-warning:hover {
+  background-color: color(secondary, hover);
+  border-color: color(secondary, hover);
+  color: color(dark-background);
+}
+
+// Alert styling for dark theme
+.alert-success {
+  background-color: rgba(64, 224, 160, .18);
+  border-color: color(primary, base);
+  color: color(primary, base);
+  font-weight: 500;
+}
+
+.alert-warning {
+  background-color: rgba(255, 201, 71, .18);
+  border-color: color(secondary, base);
+  color: color(secondary, base);
+  font-weight: 500;
+}
+
+.alert-info {
+  background-color: rgba(64, 224, 160, .12);
+  border-color: rgba(64, 224, 160, .4);
+  color: color(text-heading);
+  font-weight: 500;
+}
+
+// HR styling
+hr {
+  border-top: 1px solid rgba(61, 220, 151, .2);
+}
+
+// Additional dark theme utilities
+.text-primary {
+  color: color(primary, base) !important;
+}
+
+.text-secondary {
+  color: color(secondary, base) !important;
+}
+
+.bg-primary {
+  background-color: color(primary, base) !important;
+}
+
+.bg-secondary {
+  background-color: color(secondary, base) !important;
+}
+
+// List styling
+ul, ol {
+  color: color(text-paragraph);
+}
+
+li {
+  color: color(text-paragraph);
+}
+
+// Table styling for dark theme
+.table {
+  color: color(text-heading);
+}
+
+.table-dark {
+  background-color: color(sidebar);
+  color: color(text-heading);
+}
+
+.table-dark th,
+.table-dark td {
+  border-color: rgba(61, 220, 151, .2);
+}
+
+// List group styling for dark theme
+.list-group {
+  background-color: transparent;
+}
+
+.list-group-item {
+  background-color: rgba(13, 17, 23, 0.7);
+  border: 1px solid rgba(64, 224, 160, .3);
+  color: color(text-paragraph);
+  margin-bottom: 0.25rem;
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+  background-color: rgba(64, 224, 160, .12);
+  border-color: rgba(64, 224, 160, .5);
+  color: color(text-heading);
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.list-group-item:last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+// Custom scrollbar for sidebar
+.sidebar-sticky::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-sticky::-webkit-scrollbar-track {
+  background: color(sidebar);
+}
+
+.sidebar-sticky::-webkit-scrollbar-thumb {
+  background: rgba(61, 220, 151, .3);
+  border-radius: 3px;
+}
+
+.sidebar-sticky::-webkit-scrollbar-thumb:hover {
+  background: rgba(61, 220, 151, .5);
+}
