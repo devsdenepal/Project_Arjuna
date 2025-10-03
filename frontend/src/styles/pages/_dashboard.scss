@@ -14,7 +14,6 @@ body {
 /*
  * Sidebar
  */
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -24,6 +23,37 @@ body {
   padding: 0;
   background-color: color(sidebar) !important;
   box-shadow: inset -1px 0 0 rgba(61, 220, 151, .1);
+  
+  .nav-link {
+    font-weight: 500;
+    color: color(text-paragraph);
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: color(primary, hover);
+      
+      .feather,
+      i {
+        color: inherit;
+      }
+    }
+    
+    &.active {
+      color: color(primary, base);
+      background-color: rgba(64, 224, 160, 0.15);
+      
+      .feather,
+      i {
+        color: inherit;
+      }
+    }
+    
+    .feather,
+    i {
+      margin-right: 4px;
+      color: color(text-paragraph);
+    }
+  }
 }
 
 .sidebar-sticky {
@@ -36,31 +66,6 @@ body {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-.sidebar .nav-link {
-  font-weight: 500;
-  color: color(text-paragraph);
-  transition: color 0.2s ease;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: color(text-paragraph);
-}
-
-.sidebar .nav-link.active {
-  color: color(primary, base);
-  background-color: rgba(64, 224, 160, 0.15);
-}
-
-.sidebar .nav-link:hover {
-  color: color(primary, hover);
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
 .sidebar-heading {
   font-size: .75rem;
   text-transform: uppercase;
@@ -70,45 +75,53 @@ body {
 /*
  * Navbar
  */
-
 .navbar {
   background-color: color(sidebar) !important;
-}
-
-.navbar-brand {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: 1rem;
-  background-color: color(sidebar);
-  color: color(text-heading) !important;
-  box-shadow: inset -1px 0 0 rgba(61, 220, 151, .2);
-}
-
-.navbar .form-control {
-  padding: .75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
-  background-color: color(dark-background);
-  color: color(text-heading);
-}
-
-.form-control-dark {
-  color: color(text-heading);
-  background-color: color(dark-background);
-  border-color: color(primary, base);
-}
-
-.form-control-dark:focus {
-  border-color: color(primary, base);
-  box-shadow: 0 0 0 3px rgba(61, 220, 151, .25);
-}
-
-.navbar .nav-link {
-  color: color(text-paragraph) !important;
-}
-
-.navbar .nav-link:hover {
-  color: color(primary, base) !important;
+  
+  .navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: color(sidebar);
+    color: color(text-heading) !important;
+    box-shadow: inset -1px 0 0 rgba(64, 224, 160, .2);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    
+    &:hover {
+      color: color(primary, base) !important;
+      text-decoration: none;
+      
+      .navbar-logo {
+        filter: brightness(1.4) drop-shadow(0 0 5px rgba(64, 224, 160, 0.3));
+      }
+    }
+  }
+  
+  .navbar-logo {
+    height: 32px;
+    width: auto;
+    margin-right: 0.75rem;
+    filter: brightness(1.2);
+    transition: all 0.2s ease;
+  }
+  
+  .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+    background-color: color(dark-background);
+    color: color(text-heading);
+  }
+  
+  .nav-link {
+    color: color(text-paragraph) !important;
+    
+    &:hover {
+      color: color(primary, base) !important;
+    }
+  }
 }
 
 /*
@@ -119,25 +132,10 @@ main[role="main"] {
   background-color: color(dark-background);
   color: color(text-heading);
   min-height: calc(100vh - 48px);
-  padding: 2rem 1.5rem;
 }
 
 .container-fluid {
   background-color: color(dark-background);
-  padding-left: 0;
-  padding-right: 0;
-}
-
-// Add spacing between rows
-.row + .row {
-  margin-top: 2rem;
-}
-
-// Add spacing between columns
-.col-md-6, .col-md-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-bottom: 1rem;
 }
 
 /*
@@ -152,26 +150,9 @@ main[role="main"] {
   border-bottom: 1px solid rgba(61, 220, 151, .2) !important; 
 }
 
-// Dashboard specific overrides
-.h2 {
-  color: color(text-heading) !important;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-// Dashboard header styling
-.d-flex.justify-content-between {
-  background-color: rgba(33, 38, 45, 0.4);
-  padding: 1.5rem;
-  margin: -2rem -1.5rem 2rem -1.5rem;
-  border-bottom: 2px solid rgba(64, 224, 160, .4);
-}
-
 // Section headers
-h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   color: color(text-heading);
-  font-weight: 600;
-  margin-bottom: 1rem;
 }
 
 // Card and component styling
@@ -181,6 +162,16 @@ h3, h4, h5, h6 {
   color: color(text-heading);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   margin-bottom: 1.5rem;
+  
+  // Add yellow accent for visual balance
+  &.card-warning {
+    border-color: rgba(255, 195, 71, .4);
+    
+    .card-header {
+      background-color: rgba(255, 195, 71, .18);
+      border-bottom-color: rgba(255, 195, 71, .4);
+    }
+  }
 }
 
 .card-header {
@@ -307,28 +298,21 @@ select.form-control {
   display: inline-block;
 }
 
-// Button spacing
-.btn + .btn {
-  margin-left: 0.5rem;
-}
-
+// Enhanced components
 .btn {
-  border-radius: 0.375rem;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
-// Add subtle animation to cards
 .card {
   transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
 }
 
-.card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-}
-
-// Improve HR styling
 hr {
   border: none;
   height: 2px;
@@ -336,265 +320,101 @@ hr {
   margin: 2rem 0;
 }
 
-// Overview Cards
-.overview-card {
-  background-color: rgba(33, 38, 45, 0.9);
-  border: 1px solid rgba(64, 224, 160, .3);
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-  height: 100%;
-}
-
-.overview-card:hover {
-  border-color: rgba(64, 224, 160, .5);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
-}
-
-.overview-card-body {
-  padding: 1.5rem;
-}
-
-.overview-title {
-  color: color(text-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.overview-description {
-  color: color(text-paragraph);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.overview-features {
+// Custom feature list styling
+.feature-list {
   list-style: none;
   padding: 0;
   margin-bottom: 1rem;
+  
+  li {
+    color: color(text-paragraph);
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    position: relative;
+    padding-left: 1rem;
+    
+    &::before {
+      content: "✓";
+      color: color(primary, base);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+  }
 }
 
-.overview-features li {
-  color: color(text-paragraph);
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-  position: relative;
-  padding-left: 1rem;
-}
-
-.overview-features li::before {
-  content: "✓";
-  color: color(primary, base);
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-}
-
-// Section Headers
-.section-header {
-  margin-bottom: 1.5rem;
-}
-
-.section-header h3 {
-  color: color(text-heading);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.section-header p {
-  color: color(text-paragraph);
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-// Stat Cards
-.stat-card {
-  background-color: rgba(33, 38, 45, 0.8);
-  border: 1px solid rgba(64, 224, 160, .2);
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  border-color: rgba(64, 224, 160, .4);
-  transform: translateY(-1px);
-}
-
-.stat-number {
-  color: color(primary, base);
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  color: color(text-heading);
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
-
-.stat-change {
-  color: color(text-muted);
-  font-size: 0.8rem;
-}
-
-// Activity Feed
+// Activity Feed (streamlined)
 .activity-feed {
   max-height: 300px;
   overflow-y: auto;
+  
+  .activity-item {
+    border-bottom: 1px solid rgba(64, 220, 160, .1);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .activity-icon {
+    font-size: 1.5rem;
+  }
+  
+  .activity-title {
+    color: color(text-heading);
+    font-weight: 600;
+  }
+  
+  .activity-description {
+    color: color(text-paragraph);
+    font-size: 0.9rem;
+  }
+  
+  .activity-time {
+    color: color(text-muted);
+    font-size: 0.8rem;
+  }
 }
 
-.activity-item {
-  display: flex;
-  align-items: flex-start;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(64, 224, 160, .1);
-}
-
-.activity-item:last-child {
-  border-bottom: none;
-}
-
-.activity-icon {
-  font-size: 1.5rem;
-  margin-right: 1rem;
-  flex-shrink: 0;
-}
-
-.activity-content {
-  flex: 1;
-}
-
-.activity-title {
-  color: color(text-heading);
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.activity-description {
-  color: color(text-paragraph);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.activity-time {
-  color: color(text-muted);
-  font-size: 0.8rem;
-}
-
-// Quick Actions
-.quick-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
-
-.quick-action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1rem;
-  background-color: rgba(13, 17, 23, 0.6);
-  border: 1px solid rgba(64, 224, 160, .2);
-  border-radius: 0.375rem;
-  text-decoration: none;
-  color: color(text-paragraph);
-  transition: all 0.2s ease;
-}
-
-.quick-action-btn:hover {
-  background-color: rgba(64, 224, 160, .1);
-  border-color: rgba(64, 224, 160, .4);
-  color: color(text-heading);
-  text-decoration: none;
-}
-
-.quick-action-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.quick-action-text {
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-// Search History
+// Search History (streamlined)
 .search-history {
   max-height: 250px;
   overflow-y: auto;
+  
+  .search-item {
+    border-bottom: 1px solid rgba(64, 220, 160, .1);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .search-type-badge {
+    background-color: color(primary, base);
+    color: color(dark-background);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  
+  .search-query {
+    color: color(text-heading);
+    font-weight: 500;
+  }
+  
+  .search-time {
+    color: color(text-muted);
+    font-size: 0.8rem;
+  }
 }
 
-.search-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(64, 224, 160, .1);
-}
-
-.search-item:last-child {
-  border-bottom: none;
-}
-
-.search-type-badge {
-  background-color: color(primary, base);
-  color: color(dark-background);
-  font-size: 0.7rem;
-  font-weight: 600;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  margin-right: 0.75rem;
-  flex-shrink: 0;
-}
-
-.search-query {
-  color: color(text-heading);
-  font-weight: 500;
-  flex: 1;
-}
-
-.search-time {
-  color: color(text-muted);
-  font-size: 0.8rem;
-  flex-shrink: 0;
-}
-
-// Add responsive improvements
+// Responsive improvements
 @media (max-width: 768px) {
   main[role="main"] {
     padding: 1rem;
   }
   
-  .d-flex.justify-content-between {
-    margin: -1rem -1rem 1rem -1rem;
-    padding: 1rem;
-  }
-  
-  .col-md-6, .col-md-4 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .quick-actions {
-    grid-template-columns: 1fr;
-  }
-  
-  .overview-card-body {
-    padding: 1rem;
-  }
-  
-  .stat-card {
-    padding: 1rem;
+  .sidebar {
+    display: none !important;
   }
 }
 
@@ -623,6 +443,18 @@ hr {
   background-color: color(secondary, hover);
   border-color: color(secondary, hover);
   color: color(dark-background);
+}
+
+// Outline button variants for balance
+.btn-outline-warning {
+  border-color: color(secondary, base);
+  color: color(secondary, base);
+  
+  &:hover {
+    background-color: color(secondary, base);
+    border-color: color(secondary, base);
+    color: color(dark-background);
+  }
 }
 
 // Alert styling for dark theme
@@ -661,12 +493,61 @@ hr {
   color: color(secondary, base) !important;
 }
 
+.text-warning {
+  color: color(secondary, base) !important;
+}
+
 .bg-primary {
   background-color: color(primary, base) !important;
 }
 
 .bg-secondary {
   background-color: color(secondary, base) !important;
+}
+
+.bg-warning {
+  background-color: color(secondary, base) !important;
+}
+
+// Yellow accent borders and highlights
+.border-warning {
+  border-color: color(secondary, base) !important;
+}
+
+// Badge styling with yellow
+.badge-warning {
+  background-color: color(secondary, base);
+  color: color(dark-background);
+}
+
+// Fix button consistency  
+.btn-outline-warning {
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    background-color: color(secondary, base);
+    border-color: color(secondary, base);
+    color: color(dark-background);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 195, 71, .3);
+  }
+}
+
+// Remove conflicting blue colors
+.text-info {
+  color: color(primary, base) !important;
+}
+
+.btn-outline-info {
+  border-color: color(primary, base);
+  color: color(primary, base);
+  
+  &:hover {
+    background-color: color(primary, base);
+    border-color: color(primary, base);
+    color: color(dark-background);
+  }
 }
 
 // List styling

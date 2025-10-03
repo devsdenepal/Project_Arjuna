@@ -16,20 +16,56 @@ export default function GoogleSearch() {
 
   return (
     <div className="card mb-3">
-      <div className="card-header">Google Search</div>
+      <div className="card-header d-flex align-items-center">
+        <i className="fab fa-google mr-2 text-primary"></i>
+        <span>Google Search</span>
+      </div>
       <div className="card-body">
-        <form onSubmit={handleSubmit}>
-          <input className="form-control mb-2" value={query} onChange={e => setQuery(e.target.value)} placeholder="Search Google..." required />
-          <button className="btn btn-primary" type="submit" disabled={loading}>Search</button>
+        <form onSubmit={handleSubmit} className="mb-3">
+          <div className="input-group">
+            <input 
+              className="form-control" 
+              value={query} 
+              onChange={e => setQuery(e.target.value)} 
+              placeholder="Search Google..." 
+              required 
+            />
+            <div className="input-group-append">
+              <button className="btn btn-primary" type="submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm mr-2" role="status"></span>
+                    Searching...
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-search mr-1"></i>
+                    Search
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
         </form>
-        <ul className="list-group mt-2">
-          {results.slice(0,3).map((r, idx) => (
-            <li className="list-group-item" key={idx}>
-              <a href={r.link} target="_blank" rel="noopener noreferrer"><b>{r.title}</b></a>
-              <div>{r.snippet}</div>
-            </li>
-          ))}
-        </ul>
+        
+        {results.length > 0 && (
+          <div className="list-group">
+            {results.slice(0, 3).map((r, idx) => (
+              <div className="list-group-item list-group-item-action" key={idx}>
+                <a 
+                  href={r.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-decoration-none"
+                >
+                  <h6 className="mb-1 text-primary">{r.title}</h6>
+                </a>
+                <p className="mb-1 small text-muted">{r.snippet}</p>
+                <small className="text-success">{r.link}</small>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
