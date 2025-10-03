@@ -1,4 +1,7 @@
+
 # Project Arjuna
+<img src="https://github.com/devsdenepal/Project_Arjuna/blob/master/frontend/public/images/logo.png?raw=true"/>
+
 
 Project Arjuna is an OSINT (Open Source Intelligence) toolkit designed to help users gather and manage public information from diverse sources, all in one place.
 
