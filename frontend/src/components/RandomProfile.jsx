@@ -24,7 +24,7 @@ export default function RandomProfile() {
       <div className="card-body">
         <div className="row mb-3">
           <div className="col-md-6">
-            <select className="form-select" value={gender} onChange={e => setGender(e.target.value)}>
+            <select className="form-control" value={gender} onChange={e => setGender(e.target.value)}>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>

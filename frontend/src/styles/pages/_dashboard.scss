@@ -217,21 +217,60 @@ select.form-control {
   transition: all 0.2s ease;
 }
 
-// Form-select styling (Bootstrap 5 style) - no custom arrow needed
-.form-select {
+// Form-select styling - unified with form-control
+.form-select,
+select.form-control {
   background-color: rgba(13, 17, 23, 0.9);
   border: 1px solid rgba(64, 224, 160, .4);
   color: color(text-heading);
   padding: 0.75rem 1rem;
   border-radius: 0.375rem;
   transition: all 0.2s ease;
-  // Remove custom arrow since form-select has its own
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2340E0A0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.form-select:focus {
+.form-select:focus,
+select.form-control:focus {
   border-color: color(primary, base);
   box-shadow: 0 0 0 0.2rem rgba(64, 224, 160, .3);
   outline: none;
+  background-color: rgba(13, 17, 23, 1);
+}
+
+// Option styling for dark theme
+.form-select option,
+select.form-control option {
+  background-color: color(sidebar);
+  color: color(text-heading);
+  padding: 0.5rem;
+}
+
+// Form label styling for consistency
+.form-label {
+  color: color(text-muted);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  
+  &.small {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+}
+
+// Form group spacing
+.form-group {
+  margin-bottom: 1rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 // Profile display styling
