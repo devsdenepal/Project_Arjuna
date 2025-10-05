@@ -16,6 +16,16 @@ export const getRandomProfile = (gender) =>
 export const googleSearch = (query) =>
   fetch(`${BASE}/google?query=${encodeURIComponent(query)}`).then((r) => r.json());
 
+export const logSearch = (site, query) =>
+  fetch(`${BASE}/search/log`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ site, query }),
+  }).then((r) => r.json());
+
+export const getStats = () => fetch(`${BASE}/stats`).then((r) => r.json());
+export const getSummary = () => fetch(`${BASE}/stats/summary`).then((r) => r.json());
+
 export const getDomainInfo = (domain) =>
   fetch(`${BASE}/domain?domain=${encodeURIComponent(domain)}`).then((r) => r.json());
 

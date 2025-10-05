@@ -49,16 +49,16 @@ export default function Navbar() {
               <i className="fas fa-search mr-3"></i>
               <span>Search</span>
             </Link>
-            <a className="nav-link d-flex align-items-center py-2 px-3 text-muted" href="#" title="Coming Soon">
+            <Link className={`nav-link d-flex align-items-center py-2 px-3 ${location.pathname === '/analytics' ? 'active' : ''}`} to="/analytics">
               <i className="fas fa-chart-line mr-3"></i>
               <span>Analytics</span>
-              <small className="ml-auto badge badge-secondary">Soon</small>
-            </a>
-            <a className="nav-link d-flex align-items-center py-2 px-3 text-muted" href="#" title="Coming Soon">
+              {location.pathname === '/analytics' && <span className="sr-only">(current)</span>}
+            </Link>
+            <Link className={`nav-link d-flex align-items-center py-2 px-3 ${location.pathname === '/database' ? 'active' : ''}`} to="/database">
               <i className="fas fa-database mr-3"></i>
               <span>Database</span>
-              <small className="ml-auto badge badge-secondary">Soon</small>
-            </a>
+              {location.pathname === '/database' && <span className="sr-only">(current)</span>}
+            </Link>
             <a className="nav-link d-flex align-items-center py-2 px-3" href="#">
               <i className="fas fa-cog mr-3"></i>
               <span>Settings</span>

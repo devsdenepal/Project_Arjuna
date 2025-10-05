@@ -16,6 +16,7 @@ export default function ProfileForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await saveProfile(form);
+    window.dispatchEvent(new Event('profile:changed'));
     setMsg("Profile saved!");
     setForm({ name: "", username: "", email: "", gender: "", location: "" });
     setTimeout(() => setMsg(""), 2000);

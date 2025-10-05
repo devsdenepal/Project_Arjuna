@@ -14,6 +14,7 @@ export default function RandomProfile() {
 
   const handleSave = async () => {
     await saveProfile(profile);
+    window.dispatchEvent(new Event('profile:changed'));
     setMsg("Profile saved!");
     setTimeout(() => setMsg(""), 2000);
   };

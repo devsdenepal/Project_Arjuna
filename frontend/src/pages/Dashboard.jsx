@@ -1,7 +1,21 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import { FaUser, FaSearch, FaChartBar, FaCog, FaRocket } from "react-icons/fa";
+import Stats from "../components/Stats";
+import { getSummary } from '../api/osintApi';
 
 const Dashboard = () => {
+    const [summary, setSummary] = useState({ profiles: 0, searches: 0, domains: 0, ips: 0 });
+    useEffect(() => {
+        let mounted = true;
+        const load = () => getSummary().then(s => { if (mounted) setSummary(s || summary); }).catch(() => {});
+        load();
+        const onSearch = () => load();
+        const onProfile = () => load();
+        window.addEventListener('search:logged', onSearch);
+        window.addEventListener('profile:changed', onProfile);
+        return () => { mounted = false; window.removeEventListener('search:logged', onSearch); window.removeEventListener('profile:changed', onProfile); };
+    }, []);
     return (
         <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
             {/* Page Header */}
@@ -105,9 +119,9 @@ const Dashboard = () => {
                                             Data visualization
                                         </li>
                                     </ul>
-                                    <button className="btn btn-secondary btn-sm" disabled>
-                                        Coming Soon
-                                    </button>
+                                    <div className="mt-3">
+                                        <Stats />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -132,9 +146,9 @@ const Dashboard = () => {
                                             Search history
                                         </li>
                                     </ul>
-                                    <button className="btn btn-secondary btn-sm" disabled>
-                                        Coming Soon
-                                    </button>
+                                    <Link to="/profiles" className="btn btn-primary btn-sm stretched-link">
+                                        Manage Database
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -148,36 +162,36 @@ const Dashboard = () => {
                         <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card border-0 shadow-sm text-center">
                                 <div className="card-body py-4">
-                                    <div className="display-4 text-primary font-weight-bold mb-2">0</div>
+                                    <div className="display-4 text-primary font-weight-bold mb-2">{summary.profiles || 0}</div>
                                     <h6 className="card-title mb-1">Total Profiles</h6>
-                                    <small className="text-success">+0 today</small>
+                                    <small className="text-success">+{summary.profiles_today || 0} today</small>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card border-0 shadow-sm text-center">
                                 <div className="card-body py-4">
-                                    <div className="display-4 text-primary font-weight-bold mb-2">0</div>
+                                    <div className="display-4 text-primary font-weight-bold mb-2">{summary.searches || 0}</div>
                                     <h6 className="card-title mb-1">Searches Performed</h6>
-                                    <small className="text-success">+0 today</small>
+                                    <small className="text-success">+{summary.searches_today || 0} today</small>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card border-0 shadow-sm text-center">
                                 <div className="card-body py-4">
-                                    <div className="display-4 text-primary font-weight-bold mb-2">0</div>
+                                    <div className="display-4 text-primary font-weight-bold mb-2">{summary.domains || 0}</div>
                                     <h6 className="card-title mb-1">Domains Checked</h6>
-                                    <small className="text-muted">+0 this week</small>
+                                    <small className="text-muted">+{summary.domains_week || 0} this week</small>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card border-0 shadow-sm text-center">
                                 <div className="card-body py-4">
-                                    <div className="display-4 text-primary font-weight-bold mb-2">0</div>
+                                    <div className="display-4 text-primary font-weight-bold mb-2">{summary.ips || 0}</div>
                                     <h6 className="card-title mb-1">IPs Looked Up</h6>
-                                    <small className="text-muted">+0 this week</small>
+                                    <small className="text-muted">+{summary.ips_week || 0} this week</small>
                                 </div>
                             </div>
                         </div>

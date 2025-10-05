@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { googleSearch } from "../api/osintApi";
+import { googleSearch, logSearch } from "../api/osintApi";
 
 export default function GoogleSearch() {
   const [query, setQuery] = useState("");
@@ -10,7 +10,10 @@ export default function GoogleSearch() {
     e.preventDefault();
     setLoading(true);
     setResults([]);
-    setResults(await googleSearch(query));
+    const res = await googleSearch(query);
+    setResults(res);
+    // log search (fire-and-forget)
+  logSearch('google', query).then(() => window.dispatchEvent(new Event('search:logged'))).catch(() => {});
     setLoading(false);
   };
 

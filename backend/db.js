@@ -12,6 +12,20 @@ db.serialize(() => {
     gender TEXT,
     location TEXT
   )`);
+  db.run(`CREATE TABLE IF NOT EXISTS search_stats (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    site TEXT,
+    query TEXT,
+    ts INTEGER
+  )`);
+  // Ensure profiles table has created_ts column (migration)
+  db.all("PRAGMA table_info(profiles)", [], (err, rows) => {
+    if (err) return;
+    const hasCreated = (rows || []).some(r => r.name === 'created_ts');
+    if (!hasCreated) {
+      db.run('ALTER TABLE profiles ADD COLUMN created_ts INTEGER');
+    }
+  });
 });
 
 module.exports = db;
