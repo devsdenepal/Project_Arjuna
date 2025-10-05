@@ -98,7 +98,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xl-3 col-md-6 mb-4">
+                        {/* <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card h-100 border-0 shadow-sm">
                                 <div className="card-body p-3">
                                     <h5 className="card-title text-warning mb-2">Analytics</h5>
@@ -124,7 +124,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card h-100 border-0 shadow-sm">
                                 <div className="card-body p-3">

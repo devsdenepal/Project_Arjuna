@@ -126,6 +126,26 @@ app.post('/api/search/log', (req, res) => {
   });
 });
 
+// Recent searches (most recent N)
+app.get('/api/search/recent', (req, res) => {
+  const limit = parseInt(req.query.limit || '10', 10);
+  db.all('SELECT id, site, query, ts FROM search_stats ORDER BY ts DESC LIMIT ?', [limit], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows || []);
+  });
+});
+
+// Clear search history (optionally by site)
+app.delete('/api/search/clear', (req, res) => {
+  const { site } = req.query;
+  const sql = site ? 'DELETE FROM search_stats WHERE site = ?' : 'DELETE FROM search_stats';
+  const params = site ? [site] : [];
+  db.run(sql, params, function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ cleared: this.changes });
+  });
+});
+
 // Stats endpoint (simple aggregates)
 app.get('/api/stats', (req, res) => {
   // total and counts per site

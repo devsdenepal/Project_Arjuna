@@ -34,3 +34,10 @@ export const getNumberInfo = (number) =>
 
 export const getIpInfo = (ip) =>
   fetch(`${BASE}/ip?ip=${encodeURIComponent(ip)}`).then((r) => r.json());
+
+export const getRecentSearches = (limit = 10) => fetch(`${BASE}/search/recent?limit=${limit}`).then(r => r.json());
+
+export const clearSearches = (site) => {
+  const url = site ? `${BASE}/search/clear?site=${encodeURIComponent(site)}` : `${BASE}/search/clear`;
+  return fetch(url, { method: 'DELETE' }).then(r => r.json());
+};

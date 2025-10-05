@@ -5,6 +5,7 @@ import IpInfo from "../components/IpInfo";
 import LinkedInSearch from "../components/LinkedinSearch";
 import SocialSearch from "../components/SocialSearch";
 import Stats from "../components/Stats";
+import RecentSearches from "../components/RecentSearches";
 
 const Search = () => {
     return (
@@ -79,46 +80,11 @@ const Search = () => {
                 </section>
                 <div className="row">
                     <div className="col-12 mb-4">
-                        <h3 className="h4 mb-3">Recent Searches</h3>
-                        <div className="card border-0 shadow-sm">
-                            <div className="card-header bg-transparent d-flex justify-content-between align-items-center py-3">
-                                <h6 className="mb-0">Search History</h6>
-                                <button className="btn btn-sm btn-outline-danger">
-                                    <i className="fas fa-trash mr-1"></i>Clear All
-                                </button>
-                            </div>
-                            <div className="card-body">
-                                <div className="list-group list-group-flush">
-                                    <div className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-2">
-                                        <div className="d-flex align-items-center">
-                                            <span className="badge badge-primary mr-3">Google</span>
-                                            <span className="font-weight-medium">john doe linkedin</span>
-                                        </div>
-                                        <small className="text-muted">2 hours ago</small>
-                                    </div>
-                                    <div className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-2">
-                                        <div className="d-flex align-items-center">
-                                            <span className="badge badge-info mr-3">Domain</span>
-                                            <span className="font-weight-medium">example.com</span>
-                                        </div>
-                                        <small className="text-muted">3 hours ago</small>
-                                    </div>
-                                    <div className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-2">
-                                        <div className="d-flex align-items-center">
-                                            <span className="badge badge-success mr-3">IP</span>
-                                            <span className="font-weight-medium">192.168.1.1</span>
-                                        </div>
-                                        <small className="text-muted">1 day ago</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <h3 className="h4 mb-3">Recent Searches</h3>
+                            <RecentSearches />
                     </div>
                 </div>
-                <div className="mb-4">
-                    <h3 className="h4 mb-3">Search Statistics</h3>
-                    <Stats />
-                </div>
+                
             </div>
         </main>
     );
