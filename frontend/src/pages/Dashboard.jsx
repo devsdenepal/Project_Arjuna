@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { FaUser, FaSearch, FaChartBar, FaCog, FaRocket } from "react-icons/fa";
 import Stats from "../components/Stats";
 import { getSummary } from '../api/osintApi';
-
 const Dashboard = () => {
     const [summary, setSummary] = useState({ profiles: 0, searches: 0, domains: 0, ips: 0 });
     useEffect(() => {
@@ -18,7 +17,6 @@ const Dashboard = () => {
     }, []);
     return (
         <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-            {/* Page Header */}
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div>
                     <h1 className="h2 mb-1">Dashboard</h1>
@@ -35,9 +33,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            
             <div className="container-fluid p-0">
-                {/* Overview Cards */}
                 <section className="mb-4">
                     <div className="row">
                         <div className="col-xl-3 col-md-6 mb-4">
@@ -98,33 +94,6 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="col-xl-3 col-md-6 mb-4">
-                            <div className="card h-100 border-0 shadow-sm">
-                                <div className="card-body p-3">
-                                    <h5 className="card-title text-warning mb-2">Analytics</h5>
-                                    <p className="card-text text-muted small mb-3">
-                                        Track your investigation progress and insights
-                                    </p>
-                                    <ul className="list-unstyled small mb-3">
-                                        <li className="mb-1">
-                                            <i className="fas fa-clock text-muted mr-2"></i>
-                                            Search history
-                                        </li>
-                                        <li className="mb-1">
-                                            <i className="fas fa-clock text-muted mr-2"></i>
-                                            Usage statistics
-                                        </li>
-                                        <li className="mb-1">
-                                            <i className="fas fa-clock text-muted mr-2"></i>
-                                            Data visualization
-                                        </li>
-                                    </ul>
-                                    <div className="mt-3">
-                                        <Stats />
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                         <div className="col-xl-3 col-md-6 mb-4">
                             <div className="card h-100 border-0 shadow-sm">
                                 <div className="card-body p-3">
@@ -154,8 +123,6 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </section>
-
-                {/* Quick Stats */}
                 <section className="mb-4">
                     <h3 className="h4 mb-3">Quick Statistics</h3>
                     <div className="row">
@@ -197,8 +164,6 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </section>
-
-                {/* Recent Activity */}
                 <div className="row">
                     <div className="col-lg-8 mb-4">
                         <h3 className="h4 mb-3">Recent Activity</h3>
@@ -209,7 +174,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="d-flex align-items-start">
                                     <div className="flex-shrink-0 mr-3">
-                                        <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center" 
+                                        <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center"
                                              style={{width: '40px', height: '40px'}}>
                                             <FaRocket style={{color: '#0D1117', fontSize: '1.2rem'}} />
                                         </div>
@@ -266,5 +231,4 @@ const Dashboard = () => {
         </main>
     );
 }
-
 export default Dashboard;

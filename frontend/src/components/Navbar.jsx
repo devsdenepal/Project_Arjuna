@@ -1,8 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-
 export default function Navbar() {
   const location = useLocation();
-  
   return (
     <>
       <nav className="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow-sm">
@@ -31,10 +29,8 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-      
       <nav className="col-md-2 d-none d-md-block sidebar border-right">
         <div className="sidebar-sticky pt-3">
-          {/* Main Navigation */}
           <nav className="nav flex-column mb-4">
             <Link className={`nav-link d-flex align-items-center py-2 px-3 ${location.pathname === '/' ? 'active' : ''}`} to="/">
               <i className="fas fa-tachometer-alt mr-3"></i>
@@ -64,8 +60,6 @@ export default function Navbar() {
               <span>Settings</span>
             </a>
           </nav>
-
-          {/* Quick Tools Section */}
           <div className="border-top pt-3">
             <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-2 text-muted text-uppercase">
               <span className="small font-weight-bold">Quick Tools</span>

@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchProfiles } from "../api/osintApi";
-
 export default function ProfileList() {
   const [profiles, setProfiles] = useState([]);
-
   useEffect(() => {
     fetchProfiles().then(setProfiles);
   }, []);
-
   return (
     <div className="card">
       <div className="card-header">Saved Profiles</div>

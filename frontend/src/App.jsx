@@ -5,7 +5,6 @@ import Search from "./pages/Search";
 import Analytics from "./pages/Analytics";
 import Database from "./pages/Database";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 export default function App() {
   return (
     <Router>

@@ -4,50 +4,39 @@ body {
   color: color(text-heading);
   overflow-x: hidden;
 }
-
 .feather {
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
 }
-
-/*
- * Sidebar
- */
 .sidebar {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 100; /* Behind the navbar */
+  z-index: 100;
   padding: 0;
   background-color: color(sidebar) !important;
   box-shadow: inset -1px 0 0 rgba(61, 220, 151, .1);
-  
   .nav-link {
     font-weight: 500;
     color: color(text-paragraph);
     transition: color 0.2s ease;
-    
     &:hover {
       color: color(primary, hover);
-      
       .feather,
       i {
         color: inherit;
       }
     }
-    
     &.active {
       color: color(primary, base);
       background-color: rgba(64, 224, 160, 0.15);
-      
       .feather,
       i {
         color: inherit;
       }
     }
-    
     .feather,
     i {
       margin-right: 4px;
@@ -55,29 +44,22 @@ body {
     }
   }
 }
-
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px; /* Height of navbar */
+  top: 48px;
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto;
 }
-
 .sidebar-heading {
   font-size: .75rem;
   text-transform: uppercase;
   color: color(text-paragraph);
 }
-
-/*
- * Navbar
- */
 .navbar {
   background-color: color(sidebar) !important;
-  
   .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
@@ -88,17 +70,14 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
-    
     &:hover {
       color: color(primary, base) !important;
       text-decoration: none;
-      
       .navbar-logo {
         filter: brightness(1.4) drop-shadow(0 0 5px rgba(64, 224, 160, 0.3));
       }
     }
   }
-  
   .navbar-logo {
     height: 32px;
     width: auto;
@@ -106,7 +85,6 @@ body {
     filter: brightness(1.2);
     transition: all 0.2s ease;
   }
-  
   .form-control {
     padding: .75rem 1rem;
     border-width: 0;
@@ -114,66 +92,44 @@ body {
     background-color: color(dark-background);
     color: color(text-heading);
   }
-  
   .nav-link {
     color: color(text-paragraph) !important;
-    
     &:hover {
       color: color(primary, base) !important;
     }
   }
 }
-
-/*
- * Main content area
- */
-
 main[role="main"] {
   background-color: color(dark-background);
   color: color(text-heading);
   min-height: calc(100vh - 48px);
 }
-
 .container-fluid {
   background-color: color(dark-background);
 }
-
-/*
- * Utilities
- */
-
-.border-top { 
-  border-top: 1px solid rgba(61, 220, 151, .2) !important; 
+.border-top {
+  border-top: 1px solid rgba(61, 220, 151, .2) !important;
 }
-
-.border-bottom { 
-  border-bottom: 1px solid rgba(61, 220, 151, .2) !important; 
+.border-bottom {
+  border-bottom: 1px solid rgba(61, 220, 151, .2) !important;
 }
-
-// Section headers
 h1, h2, h3, h4, h5, h6 {
   color: color(text-heading);
 }
-
-// Card and component styling
 .card {
   background-color: rgba(33, 38, 45, 0.9);
   border: 1px solid rgba(64, 224, 160, .4);
   color: color(text-heading);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   margin-bottom: 1.5rem;
-  
-  // Add yellow accent for visual balance
   &.card-warning {
     border-color: rgba(255, 195, 71, .4);
-    
     .card-header {
       background-color: rgba(255, 195, 71, .18);
       border-bottom-color: rgba(255, 195, 71, .4);
     }
   }
 }
-
 .card-header {
   background-color: rgba(64, 224, 160, .18);
   border-bottom: 1px solid rgba(64, 224, 160, .4);
@@ -181,8 +137,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   padding: 0.75rem 1.25rem;
 }
-
-// Form styling for dark theme
 .form-control {
   background-color: rgba(13, 17, 23, 0.9);
   border: 1px solid rgba(64, 224, 160, .4);
@@ -191,7 +145,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.375rem;
   transition: all 0.2s ease;
 }
-
 .form-control:focus {
   background-color: rgba(13, 17, 23, 1);
   border-color: color(primary, base);
@@ -199,13 +152,10 @@ h1, h2, h3, h4, h5, h6 {
   color: color(text-heading);
   outline: none;
 }
-
 .form-control::placeholder {
   color: color(text-muted);
   opacity: 0.8;
 }
-
-// Select styling for form-control (Bootstrap 4 style)
 select.form-control {
   background-color: rgba(13, 17, 23, 0.9);
   border: 1px solid rgba(64, 224, 160, .4);
@@ -216,8 +166,6 @@ select.form-control {
   background-size: 16px 12px;
   transition: all 0.2s ease;
 }
-
-// Form-select styling - unified with form-control
 .form-select,
 select.form-control {
   background-color: rgba(13, 17, 23, 0.9);
@@ -234,7 +182,6 @@ select.form-control {
   -moz-appearance: none;
   appearance: none;
 }
-
 .form-select:focus,
 select.form-control:focus {
   border-color: color(primary, base);
@@ -242,73 +189,54 @@ select.form-control:focus {
   outline: none;
   background-color: rgba(13, 17, 23, 1);
 }
-
-// Option styling for dark theme
 .form-select option,
 select.form-control option {
   background-color: color(sidebar);
   color: color(text-heading);
   padding: 0.5rem;
 }
-
-// Form label styling for consistency
 .form-label {
   color: color(text-muted);
   font-weight: 500;
   margin-bottom: 0.5rem;
-  
   &.small {
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.025em;
   }
 }
-
-// Form group spacing
 .form-group {
   margin-bottom: 1rem;
-  
   &:last-child {
     margin-bottom: 0;
   }
 }
-
-// Profile display styling
 .card-body p {
   color: color(text-paragraph);
   margin-bottom: 0.5rem;
   line-height: 1.5;
 }
-
 .card-body p b {
   color: color(text-heading);
   font-weight: 600;
   margin-right: 0.5rem;
 }
-
-// Profile information container
 .card-body > div {
   padding: 0.75rem 0;
 }
-
 .card-body > div:not(:last-child) {
   border-bottom: 1px solid rgba(64, 224, 160, .25);
   margin-bottom: 1rem;
   padding-bottom: 1rem;
 }
-
-// Specific styling for profile generation
 .card-body .mb-2 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
-
 .card-body .mb-2 .form-select {
   margin-bottom: 0;
 }
-
-// Generated profile display area
 .card-body > div:has(p) {
   background-color: rgba(33, 38, 45, 0.6);
   border: 1px solid rgba(64, 224, 160, .3);
@@ -316,19 +244,15 @@ select.form-control option {
   padding: 1.25rem;
   margin-top: 1rem;
 }
-
-// Profile field styling
 .card-body p {
   color: color(text-paragraph);
   margin-bottom: 0.75rem;
   line-height: 1.6;
   font-size: 0.95rem;
 }
-
 .card-body p:last-of-type {
   margin-bottom: 1rem;
 }
-
 .card-body p b {
   color: color(text-heading);
   font-weight: 600;
@@ -336,42 +260,33 @@ select.form-control option {
   min-width: 80px;
   display: inline-block;
 }
-
-// Enhanced components
 .btn {
   font-weight: 500;
   transition: all 0.2s ease;
 }
-
 .card {
   transition: all 0.3s ease;
-  
   &:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
   }
 }
-
 hr {
   border: none;
   height: 2px;
   background: linear-gradient(90deg, transparent, rgba(64, 224, 160, .4), transparent);
   margin: 2rem 0;
 }
-
-// Custom feature list styling
 .feature-list {
   list-style: none;
   padding: 0;
   margin-bottom: 1rem;
-  
   li {
     color: color(text-paragraph);
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
     position: relative;
     padding-left: 1rem;
-    
     &::before {
       content: "✓";
       color: color(primary, base);
@@ -381,185 +296,140 @@ hr {
     }
   }
 }
-
-// Activity Feed (streamlined)
 .activity-feed {
   max-height: 300px;
   overflow-y: auto;
-  
   .activity-item {
     border-bottom: 1px solid rgba(64, 220, 160, .1);
-    
     &:last-child {
       border-bottom: none;
     }
   }
-  
   .activity-icon {
     font-size: 1.5rem;
   }
-  
   .activity-title {
     color: color(text-heading);
     font-weight: 600;
   }
-  
   .activity-description {
     color: color(text-paragraph);
     font-size: 0.9rem;
   }
-  
   .activity-time {
     color: color(text-muted);
     font-size: 0.8rem;
   }
 }
-
-// Search History (streamlined)
 .search-history {
   max-height: 250px;
   overflow-y: auto;
-  
   .search-item {
     border-bottom: 1px solid rgba(64, 220, 160, .1);
-    
     &:last-child {
       border-bottom: none;
     }
   }
-  
   .search-type-badge {
     background-color: color(primary, base);
     color: color(dark-background);
     font-size: 0.7rem;
     font-weight: 600;
   }
-  
   .search-query {
     color: color(text-heading);
     font-weight: 500;
   }
-  
   .search-time {
     color: color(text-muted);
     font-size: 0.8rem;
   }
 }
-
-// Responsive improvements
 @media (max-width: 768px) {
   main[role="main"] {
     padding: 1rem;
   }
-  
   .sidebar {
     display: none !important;
   }
 }
-
-// Button styling for dark theme
 .btn-primary {
   background-color: color(primary, base);
   border-color: color(primary, base);
   color: color(dark-background);
   font-weight: 500;
 }
-
 .btn-primary:hover {
   background-color: color(primary, hover);
   border-color: color(primary, hover);
   color: color(dark-background);
 }
-
 .btn-warning {
   background-color: color(secondary, base);
   border-color: color(secondary, base);
   color: color(dark-background);
   font-weight: 500;
 }
-
 .btn-warning:hover {
   background-color: color(secondary, hover);
   border-color: color(secondary, hover);
   color: color(dark-background);
 }
-
-// Outline button variants for balance
 .btn-outline-warning {
   border-color: color(secondary, base);
   color: color(secondary, base);
-  
   &:hover {
     background-color: color(secondary, base);
     border-color: color(secondary, base);
     color: color(dark-background);
   }
 }
-
-// Alert styling for dark theme
 .alert-success {
   background-color: rgba(64, 224, 160, .18);
   border-color: color(primary, base);
   color: color(primary, base);
   font-weight: 500;
 }
-
 .alert-warning {
   background-color: rgba(255, 201, 71, .18);
   border-color: color(secondary, base);
   color: color(secondary, base);
   font-weight: 500;
 }
-
 .alert-info {
   background-color: rgba(64, 224, 160, .12);
   border-color: rgba(64, 224, 160, .4);
   color: color(text-heading);
   font-weight: 500;
 }
-
-// HR styling
 hr {
   border-top: 1px solid rgba(61, 220, 151, .2);
 }
-
-// Additional dark theme utilities
 .text-primary {
   color: color(primary, base) !important;
 }
-
 .text-secondary {
   color: color(secondary, base) !important;
 }
-
 .text-warning {
   color: color(secondary, base) !important;
 }
-
 .bg-primary {
   background-color: color(primary, base) !important;
 }
-
 .bg-secondary {
   background-color: color(secondary, base) !important;
 }
-
 .bg-warning {
   background-color: color(secondary, base) !important;
 }
-
-// Yellow accent borders and highlights
 .border-warning {
   border-color: color(secondary, base) !important;
 }
-
-// Badge styling with yellow
 .badge-warning {
   background-color: color(secondary, base);
   color: color(dark-background);
 }
-
-// Fix button consistency  
 .btn-outline-warning {
   &:not(:disabled):not(.disabled):active,
   &:not(:disabled):not(.disabled).active {
@@ -567,57 +437,42 @@ hr {
     border-color: color(secondary, base);
     color: color(dark-background);
   }
-  
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 195, 71, .3);
   }
 }
-
-// Remove conflicting blue colors
 .text-info {
   color: color(primary, base) !important;
 }
-
 .btn-outline-info {
   border-color: color(primary, base);
   color: color(primary, base);
-  
   &:hover {
     background-color: color(primary, base);
     border-color: color(primary, base);
     color: color(dark-background);
   }
 }
-
-// List styling
 ul, ol {
   color: color(text-paragraph);
 }
-
 li {
   color: color(text-paragraph);
 }
-
-// Table styling for dark theme
 .table {
   color: color(text-heading);
 }
-
 .table-dark {
   background-color: color(sidebar);
   color: color(text-heading);
 }
-
 .table-dark th,
 .table-dark td {
   border-color: rgba(61, 220, 151, .2);
 }
-
-// List group styling for dark theme
 .list-group {
   background-color: transparent;
 }
-
 .list-group-item {
   background-color: rgba(13, 17, 23, 0.7);
   border: 1px solid rgba(64, 224, 160, .3);
@@ -627,37 +482,29 @@ li {
   padding: 0.75rem 1rem;
   transition: all 0.2s ease;
 }
-
 .list-group-item:hover {
   background-color: rgba(64, 224, 160, .12);
   border-color: rgba(64, 224, 160, .5);
   color: color(text-heading);
 }
-
 .list-group-item:first-child {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
-
 .list-group-item:last-child {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
-
-// Custom scrollbar for sidebar
 .sidebar-sticky::-webkit-scrollbar {
   width: 6px;
 }
-
 .sidebar-sticky::-webkit-scrollbar-track {
   background: color(sidebar);
 }
-
 .sidebar-sticky::-webkit-scrollbar-thumb {
   background: rgba(61, 220, 151, .3);
   border-radius: 3px;
 }
-
 .sidebar-sticky::-webkit-scrollbar-thumb:hover {
   background: rgba(61, 220, 151, .5);
 }

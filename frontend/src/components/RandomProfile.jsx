@@ -1,24 +1,20 @@
 import { useState } from "react";
 import { getRandomProfile, saveProfile } from "../api/osintApi";
 import { FaMale, FaFemale } from "react-icons/fa";
-
 export default function RandomProfile() {
   const [profile, setProfile] = useState(null);
   const [gender, setGender] = useState("male");
   const [msg, setMsg] = useState("");
-
   const handleGenerate = async () => {
     setProfile(await getRandomProfile(gender));
     setMsg("");
   };
-
   const handleSave = async () => {
     await saveProfile(profile);
     window.dispatchEvent(new Event('profile:changed'));
     setMsg("Profile saved!");
     setTimeout(() => setMsg(""), 2000);
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header">Random Profile Generator</div>
@@ -37,7 +33,6 @@ export default function RandomProfile() {
             </button>
           </div>
         </div>
-        
         {profile && (
           <div className="border rounded p-3 bg-light">
             <div className="row">
@@ -74,7 +69,6 @@ export default function RandomProfile() {
             </div>
           </div>
         )}
-        
         {msg && (
           <div className="alert alert-success alert-dismissible mt-3" role="alert">
             <i className="fas fa-check-circle mr-2"></i>

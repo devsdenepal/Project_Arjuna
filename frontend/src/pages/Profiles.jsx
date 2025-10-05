@@ -1,11 +1,9 @@
 import ProfileForm from "../components/ProfileForm";
 import ProfileList from "../components/ProfileList";
 import RandomProfile from "../components/RandomProfile";
-
 const Profiles = () => {
     return (
         <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
-            {/* Page Header */}
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div>
                     <h1 className="h2 mb-1">Profile Management</h1>
@@ -22,9 +20,7 @@ const Profiles = () => {
                     </div>
                 </div>
             </div>
-
             <div className="container-fluid p-0">
-                {/* Profile Generation Section */}
                 <section className="mb-4">
                     <div className="row">
                         <div className="col-lg-6 mb-4">
@@ -37,8 +33,6 @@ const Profiles = () => {
                         </div>
                     </div>
                 </section>
-
-                {/* Saved Profiles Section */}
                 <section className="mb-4">
                     <div className="row">
                         <div className="col-12 mb-4">
@@ -47,8 +41,6 @@ const Profiles = () => {
                         </div>
                     </div>
                 </section>
-
-                {/* Profile Statistics */}
                 <div className="mb-4">
                     <h3 className="h4 mb-3">Profile Statistics</h3>
                     <div className="row">
@@ -90,5 +82,4 @@ const Profiles = () => {
         </main>
     );
 }
-
 export default Profiles;

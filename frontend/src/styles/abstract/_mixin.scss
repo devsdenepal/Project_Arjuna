@@ -24,7 +24,6 @@
     color: color(secondary, base);
     position: relative;
   }
-  
   @mixin position-center {
     position: absolute;
     bottom: 50%;
@@ -38,7 +37,6 @@
     border-radius: 8px;
     box-shadow: $shadow;
   }
-  
   @mixin truncate {
     display: block;
     display: -webkit-box;
@@ -46,7 +44,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
-    /* autoprefixer: off */
   }
   @mixin loader-element($width, $height, $border-radius) {
     background-color: #dddddd;
@@ -77,14 +74,11 @@
       background-position: 1200px 0;
     }
   }
-
-  // BREAK POINTS FOR THE DEVICES
   $xs: 480px;
   $sm: 576px; // FOR SMALL DEVICES == sm
   $md: 767.98px; // FOR MEDIUM DEVICES == md
   $lg: 992px; // FOR LARGE DEVICES == lg
   $xlg: 1200px; // FOR EXTRA LARGE DEVICES == xlg
-  
   @mixin responsive-for($size) {
     @if $size == xs {
       @media all and (max-width: $xs) {
@@ -108,8 +102,6 @@
       }
     }
   }
-
-
   $spacing-scale: (
     xxl: 96px,
     xl: 64px,
@@ -118,9 +110,8 @@
     sm: 24px,
     xs: 16px
   );
-  
   $directions: (
-    '': '',        
+    '': '',
     't': '-top',
     'r': '-right',
     'b': '-bottom',
@@ -128,7 +119,6 @@
     'x': ('-left', '-right'),
     'y': ('-top', '-bottom')
   );
-
   $breakpoints: (
   xs: 480px,
   sm: 576px,
@@ -136,38 +126,11 @@
   lg: 992px,
   xlg: 1200px
 );
-
-
 @mixin responsive-for($size) {
   @media all and (max-width: map-get($breakpoints, $size)) {
     @content;
   }
-}
-
-  // @each $name, $space in $spacing-scale {
-  //   @each $dir-key, $dir-value in $directions {
-  //     .m#{$dir-key}-#{$name} {
-  //       @if type-of($dir-value) == 'list' {
-  //         @each $sub in $dir-value {
-  //           margin#{$sub}: $space !important;
-  //         }
-  //       } @else {
-  //         margin#{$dir-value}: $space !important;
-  //       }
-  //     }
-  //     .p#{$dir-key}-#{$name} {
-  //       @if type-of($dir-value) == 'list' {
-  //         @each $sub in $dir-value {
-  //           padding#{$sub}: $space !important;
-  //         }
-  //       } @else {
-  //         padding#{$dir-value}: $space !important;
-  //       }
-  //     }
-  
-  //   }
-  // }
-
+}
   @each $breakpoint, $bp-value in $breakpoints {
   @each $name, $space in $spacing-scale {
     @each $dir-key, $dir-value in $directions {
@@ -182,7 +145,6 @@
           }
         }
       }
-
       .p#{$dir-key}-#{$name}-#{$breakpoint} {
         @include responsive-for($breakpoint) {
           @if type-of($dir-value) == 'list' {

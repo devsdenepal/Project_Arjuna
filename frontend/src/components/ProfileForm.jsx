@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { saveProfile } from "../api/osintApi";
-
 export default function ProfileForm() {
   const [form, setForm] = useState({
     name: "",
@@ -10,9 +9,7 @@ export default function ProfileForm() {
     location: ""
   });
   const [msg, setMsg] = useState("");
-
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     await saveProfile(form);
@@ -21,7 +18,6 @@ export default function ProfileForm() {
     setForm({ name: "", username: "", email: "", gender: "", location: "" });
     setTimeout(() => setMsg(""), 2000);
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header d-flex align-items-center">
@@ -34,51 +30,51 @@ export default function ProfileForm() {
             <div className="col-md-6">
               <div className="form-group mb-3">
                 <label htmlFor="name" className="form-label small text-muted">Full Name</label>
-                <input 
+                <input
                   id="name"
-                  className="form-control" 
-                  name="name" 
-                  placeholder="Enter full name" 
-                  value={form.name} 
-                  onChange={handleChange} 
-                  required 
+                  className="form-control"
+                  name="name"
+                  placeholder="Enter full name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group mb-3">
                 <label htmlFor="username" className="form-label small text-muted">Username</label>
-                <input 
+                <input
                   id="username"
-                  className="form-control" 
-                  name="username" 
-                  placeholder="Enter username" 
-                  value={form.username} 
-                  onChange={handleChange} 
-                  required 
+                  className="form-control"
+                  name="username"
+                  placeholder="Enter username"
+                  value={form.username}
+                  onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group mb-3">
                 <label htmlFor="email" className="form-label small text-muted">Email Address</label>
-                <input 
+                <input
                   id="email"
                   type="email"
-                  className="form-control" 
-                  name="email" 
-                  placeholder="Enter email address" 
-                  value={form.email} 
-                  onChange={handleChange} 
-                  required 
+                  className="form-control"
+                  name="email"
+                  placeholder="Enter email address"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
             <div className="col-md-6">
               <div className="form-group mb-3">
                 <label htmlFor="gender" className="form-label small text-muted">Gender</label>
-                <select 
+                <select
                   id="gender"
-                  className="form-control" 
-                  name="gender" 
-                  value={form.gender} 
-                  onChange={handleChange} 
+                  className="form-control"
+                  name="gender"
+                  value={form.gender}
+                  onChange={handleChange}
                   required
                 >
                   <option value="">Select gender</option>
@@ -90,14 +86,14 @@ export default function ProfileForm() {
               </div>
               <div className="form-group mb-3">
                 <label htmlFor="location" className="form-label small text-muted">Location</label>
-                <input 
+                <input
                   id="location"
-                  className="form-control" 
-                  name="location" 
-                  placeholder="Enter location" 
-                  value={form.location} 
-                  onChange={handleChange} 
-                  required 
+                  className="form-control"
+                  name="location"
+                  placeholder="Enter location"
+                  value={form.location}
+                  onChange={handleChange}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -109,7 +105,6 @@ export default function ProfileForm() {
             </div>
           </div>
         </form>
-        
         {msg && (
           <div className="alert alert-success alert-dismissible mt-3" role="alert">
             <i className="fas fa-check-circle mr-2"></i>

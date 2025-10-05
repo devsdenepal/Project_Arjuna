@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { getNumberInfo } from "../api/osintApi";
-
 export default function NumberInfo() {
   const [number, setNumber] = useState("");
   const [info, setInfo] = useState(null);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setInfo(await getNumberInfo(number));
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header">Phone Number Info</div>

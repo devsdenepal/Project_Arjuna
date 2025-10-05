@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-
-// Aggregated stats
 router.get('/stats', (req, res) => {
   const totals = {};
   db.get('SELECT COUNT(*) as total FROM search_stats', [], (err, row) => {
@@ -16,15 +14,12 @@ router.get('/stats', (req, res) => {
     });
   });
 });
-
-// Summary for dashboard
 router.get('/stats/summary', (req, res) => {
   const summary = {};
   const now = Date.now();
   const startOfToday = new Date(); startOfToday.setUTCHours(0,0,0,0);
   const startOfTodayTs = startOfToday.getTime();
   const sevenDaysAgo = now - 7*24*60*60*1000;
-
   db.get('SELECT COUNT(*) as cnt FROM profiles', [], (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     summary.profiles = row ? row.cnt : 0;
@@ -59,5 +54,4 @@ router.get('/stats/summary', (req, res) => {
     });
   });
 });
-
 module.exports = router;

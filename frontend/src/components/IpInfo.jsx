@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { getIpInfo } from "../api/osintApi";
-
 export default function IpInfo() {
   const [ip, setIp] = useState("");
   const [info, setInfo] = useState(null);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setInfo(await getIpInfo(ip));
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header">IP Address Info</div>

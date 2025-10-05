@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const axios = require('axios');
-
-// Create profile
 router.post('/profile', (req, res) => {
   const { name, username, email, gender, location } = req.body;
   const ts = Date.now();
@@ -16,8 +14,6 @@ router.post('/profile', (req, res) => {
     }
   );
 });
-
-// Random Profile
 router.get('/profile/random', async (req, res) => {
   const { gender } = req.query;
   try {
@@ -36,16 +32,12 @@ router.get('/profile/random', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-// List profiles
 router.get('/profiles', (req, res) => {
   db.all("SELECT * FROM profiles", [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(rows);
   });
 });
-
-// Get single profile
 router.get('/profile/:id', (req, res) => {
   const id = req.params.id;
   db.get('SELECT * FROM profiles WHERE id = ?', [id], (err, row) => {
@@ -54,8 +46,6 @@ router.get('/profile/:id', (req, res) => {
     res.json(row);
   });
 });
-
-// Update profile
 router.put('/profile/:id', (req, res) => {
   const id = req.params.id;
   const { name, username, email, gender, location } = req.body;
@@ -64,8 +54,6 @@ router.put('/profile/:id', (req, res) => {
     res.json({ id, name, username, email, gender, location });
   });
 });
-
-// Delete profile
 router.delete('/profile/:id', (req, res) => {
   const id = req.params.id;
   db.run('DELETE FROM profiles WHERE id = ?', [id], function(err) {
@@ -73,6 +61,4 @@ router.delete('/profile/:id', (req, res) => {
     res.json({ id });
   });
 });
-
 module.exports = router;
-

@@ -1,29 +1,21 @@
-
-// Base dark theme styles
 html, body {
   background-color: color(dark-background);
   color: color(text-heading);
   min-height: 100vh;
 }
-
 #root {
   background-color: color(dark-background);
   min-height: 100vh;
 }
-
-// Override any Bootstrap defaults that might interfere
 .bg-light {
   background-color: color(sidebar) !important;
 }
-
 .bg-dark {
   background-color: color(sidebar) !important;
 }
-
 .text-muted {
   color: color(text-muted) !important;
 }
-
 section[role="individual"] {
   margin-top: 5rem;
   padding: 1.5rem 0rem;
@@ -36,7 +28,6 @@ section[role="individual"] {
     padding: 0.75rem 0rem;
   }
 }
-
 p[role="large"] {
   font-size: $text-large;
   font-family: "Poppins", sans-serif;
@@ -51,7 +42,7 @@ p[role="large"] {
 p[role="normal"] {
   font-size: $text-medium;
   font-family: "Poppins", sans-serif;
-  line-height: 155%; /* 1.55rem */
+  line-height: 155%;
   letter-spacing: 0.02rem;
   @include responsive-for(sm) {
     font-size: $text-small;
@@ -66,11 +57,9 @@ p {
     font-size: $text-small;
   }
 }
-
 section[role="main"] {
   padding: 6rem 0rem;
 }
-
 h1 {
   font-size: $heading;
   color: color(text-heading);
@@ -106,7 +95,6 @@ h3 {
     font-size: $text-extraLarge;
   }
 }
-
 p[role="large"] {
   font-size: $text-large;
   font-family: "Poppins", sans-serif;
@@ -121,7 +109,7 @@ p[role="large"] {
 p[role="medium"] {
   font-size: $text-medium;
   font-family: "Poppins", sans-serif;
-  line-height: 155%; /* 1.55rem */
+  line-height: 155%;
   letter-spacing: 0.02rem;
    color:color(text-paragraph);
   @include responsive-for(sm) {
@@ -136,12 +124,10 @@ p {
     font-size: $text-small;
   }
 }
-
 h4 , h5 ,h6{
   color: color(text-heading);
   font-weight: 600;
 }
-
 li{
   color: color(text-paragraph);
 }

@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { googleSearch, logSearch } from "../api/osintApi";
-
 export default function SocialSearch() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [company, setCompany] = useState("");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState({ facebook: null, instagram: null, twitter: null });
-
   const buildSiteDork = (site, name, location, company) => {
     const quotedName = name && name.trim() ? `"${name.trim()}"` : "";
     const parts = [quotedName];
@@ -15,29 +13,23 @@ export default function SocialSearch() {
     if (location && location.trim()) parts.push(location.trim());
     return `site:${site} ${parts.filter(Boolean).join(" ")}`.trim();
   };
-
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!name || !name.trim()) return;
     setLoading(true);
     setResults({ facebook: null, instagram: null, twitter: null });
-
     try {
       const fbDork = buildSiteDork("facebook.com", name, location, company);
       const igDork = buildSiteDork("instagram.com", name, location, company);
       const twDork = buildSiteDork("twitter.com", name, location, company);
-
       const [fbRes, igRes, twRes] = await Promise.all([
         googleSearch(fbDork).catch(() => []),
         googleSearch(igDork).catch(() => []),
         googleSearch(twDork).catch(() => []),
       ]);
-
-      // log searches (best-effort)
   logSearch('facebook', fbDork).then(() => window.dispatchEvent(new Event('search:logged'))).catch(() => {});
   logSearch('instagram', igDork).then(() => window.dispatchEvent(new Event('search:logged'))).catch(() => {});
   logSearch('twitter', twDork).then(() => window.dispatchEvent(new Event('search:logged'))).catch(() => {});
-
       setResults({
         facebook: (fbRes && fbRes[0]) || null,
         instagram: (igRes && igRes[0]) || null,
@@ -46,10 +38,8 @@ export default function SocialSearch() {
     } catch (err) {
       console.error("Social search error", err);
     }
-
     setLoading(false);
   };
-
   const renderResult = (r, siteName) => {
     if (!r) return <div className="text-muted">No {siteName} result</div>;
     return (
@@ -62,7 +52,6 @@ export default function SocialSearch() {
       </div>
     );
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header d-flex align-items-center">
@@ -108,7 +97,6 @@ export default function SocialSearch() {
             </div>
           </div>
         </form>
-
         <div className="row">
           <div className="col-md-4">
             <h6 className="mb-2">Facebook</h6>

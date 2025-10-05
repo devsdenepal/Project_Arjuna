@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { googleSearch, logSearch } from "../api/osintApi";
-
 export default function LinkedInSearch() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [company, setCompany] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const buildDork = ({ name, location, company }) => {
     const sites = ["site:linkedin.com/in", "site:linkedin.com/pub"];
     const parts = [];
@@ -27,7 +25,7 @@ export default function LinkedInSearch() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !name.trim()) return; 
+    if (!name || !name.trim()) return;
     setLoading(true);
     setResults([]);
     const dork = buildDork({ name, location, company });
@@ -41,7 +39,6 @@ export default function LinkedInSearch() {
     }
     setLoading(false);
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header d-flex align-items-center">
@@ -87,7 +84,6 @@ export default function LinkedInSearch() {
             </div>
           </div>
         </form>
-
         {results.length > 0 && (
           <div className="list-group">
             {results.slice(0, 3).map((r, idx) => (

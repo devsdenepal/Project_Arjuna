@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { getRecentSearches, clearSearches } from '../api/osintApi';
-
 export default function RecentSearches({ limit = 10 }){
   const [recent, setRecent] = useState([]);
-
   const load = async () => {
     try {
       const r = await getRecentSearches(limit);
       setRecent(r || []);
     } catch (e) { console.error(e); }
   };
-
   useEffect(()=>{ load(); }, [limit]);
-
   const timeAgo = (ts) => {
     const sec = Math.floor((Date.now() - ts) / 1000);
     if (sec < 60) return `${sec}s ago`;
@@ -23,7 +19,15 @@ export default function RecentSearches({ limit = 10 }){
     const days = Math.floor(hr / 24);
     return `${days}d ago`;
   };
-
+  const explainDork = (query) => {
+    const dorkPatterns = [
+      /site:[^\s]+/gi,
+    ];
+    dorkPatterns.forEach(pattern => {
+      query = query.replace(pattern, '***');
+    });
+    return query;
+  }
   return (
     <div className="card border-0 shadow-sm">
       <div className="card-header bg-transparent d-flex justify-content-between align-items-center py-3">
@@ -39,7 +43,7 @@ export default function RecentSearches({ limit = 10 }){
             <div key={item.id} className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 py-2">
               <div className="d-flex align-items-center" style={{ overflow: 'hidden' }} title={item.query}>
                 <span style={{ padding: '4px 8px', fontSize: 12, marginRight: 10, borderRadius: 6, display: 'inline-block', verticalAlign: 'middle', background: item.site === 'google' ? '#0d6efd' : item.site === 'domain' ? '#198754' : item.site === 'ip' ? '#0dcaf0' : '#6c757d', color: '#fff' }}>{item.site}</span>
-                <span className="font-weight-medium" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.query}</span>
+                <span className="font-weight-medium" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{explainDork(item.query)}</span>
               </div>
               <small className="text-muted">{timeAgo(item.ts)}</small>
             </div>

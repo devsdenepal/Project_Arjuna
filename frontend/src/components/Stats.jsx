@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getStats } from '../api/osintApi';
 import RecentSearches from './RecentSearches';
-
 export default function Stats() {
   const [stats, setStats] = useState({ total: 0, perSite: {} });
-  // recent searches are rendered by RecentSearches component
-
   const load = async () => {
     try {
       const s = await getStats();
@@ -14,21 +11,18 @@ export default function Stats() {
       console.error('Failed to load stats', err);
     }
   };
-
   useEffect(() => { load(); }, []);
   useEffect(() => {
     const handler = () => load();
     window.addEventListener('search:logged', handler);
     return () => window.removeEventListener('search:logged', handler);
   }, []);
-
   useEffect(() => { load(); }, []);
   useEffect(() => {
     const handler = () => load();
     window.addEventListener('search:logged', handler);
     return () => window.removeEventListener('search:logged', handler);
   }, []);
-
   const timeAgo = (ts) => {
     const sec = Math.floor((Date.now() - ts) / 1000);
     if (sec < 60) return `${sec}s ago`;
@@ -39,7 +33,6 @@ export default function Stats() {
     const days = Math.floor(hr / 24);
     return `${days}d ago`;
   };
-
   return (
     <div className="card border-0 shadow-sm mb-3">
       <div className="card-body d-flex justify-content-between align-items-center">
@@ -74,7 +67,6 @@ export default function Stats() {
           </div>
         </div>
       </div>
-
       <div className="card-footer bg-transparent">
         <RecentSearches limit={6} />
       </div>

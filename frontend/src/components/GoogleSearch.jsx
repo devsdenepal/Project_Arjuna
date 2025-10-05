@@ -1,22 +1,18 @@
 import { useState } from "react";
 import { googleSearch, logSearch } from "../api/osintApi";
-
 export default function GoogleSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setResults([]);
     const res = await googleSearch(query);
     setResults(res);
-    // log search (fire-and-forget)
   logSearch('google', query).then(() => window.dispatchEvent(new Event('search:logged'))).catch(() => {});
     setLoading(false);
   };
-
   return (
     <div className="card mb-3">
       <div className="card-header d-flex align-items-center">
@@ -26,12 +22,12 @@ export default function GoogleSearch() {
       <div className="card-body">
         <form onSubmit={handleSubmit} className="mb-3">
           <div className="input-group">
-            <input 
-              className="form-control" 
-              value={query} 
-              onChange={e => setQuery(e.target.value)} 
-              placeholder="Search Google..." 
-              required 
+            <input
+              className="form-control"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="Search Google..."
+              required
             />
             <div className="input-group-append">
               <button className="btn btn-primary" type="submit" disabled={loading}>
@@ -50,14 +46,13 @@ export default function GoogleSearch() {
             </div>
           </div>
         </form>
-        
         {results.length > 0 && (
           <div className="list-group">
             {results.slice(0, 3).map((r, idx) => (
               <div className="list-group-item list-group-item-action" key={idx}>
-                <a 
-                  href={r.link} 
-                  target="_blank" 
+                <a
+                  href={r.link}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-decoration-none"
                 >

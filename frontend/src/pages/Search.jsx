@@ -6,7 +6,6 @@ import LinkedInSearch from "../components/LinkedinSearch";
 import SocialSearch from "../components/SocialSearch";
 import Stats from "../components/Stats";
 import RecentSearches from "../components/RecentSearches";
-
 const Search = () => {
     return (
         <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -26,7 +25,6 @@ const Search = () => {
                     </div>
                 </div>
             </div>
-
             <div className="container-fluid p-0">
                 <section className="mb-4">
                     <div className="row">
@@ -84,10 +82,8 @@ const Search = () => {
                             <RecentSearches />
                     </div>
                 </div>
-                
             </div>
         </main>
     );
 }
-
 export default Search;

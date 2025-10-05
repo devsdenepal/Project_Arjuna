@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const db = require('../db');
-
-// Google Search
 router.get('/google', async (req, res) => {
   const { query } = req.query;
   try {
@@ -14,8 +12,6 @@ router.get('/google', async (req, res) => {
     res.status(500).json({ error: err.message, details: err.response?.data });
   }
 });
-
-// Domain Info
 router.get('/domain', async (req, res) => {
   const { domain } = req.query;
   try {
@@ -29,8 +25,6 @@ router.get('/domain', async (req, res) => {
     res.status(500).json({ error: req.query, message: err.message });
   }
 });
-
-// Phone Info
 router.get('/phone', async (req, res) => {
   const { number } = req.query;
   if (!number || typeof number !== 'string') return res.status(400).json({ error: 'number query required' });
@@ -46,8 +40,6 @@ router.get('/phone', async (req, res) => {
     res.status(500).json({ error: err.message, details: err.response?.data });
   }
 });
-
-// IP Info
 router.get('/ip', async (req, res) => {
   const { ip } = req.query;
   try {
@@ -58,8 +50,6 @@ router.get('/ip', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-// Search logging
 router.post('/search/log', (req, res) => {
   const { site, query } = req.body;
   if (!site) return res.status(400).json({ error: 'site required' });
@@ -70,8 +60,6 @@ router.post('/search/log', (req, res) => {
     res.json({ id: this.lastID, site, query, ts });
   });
 });
-
-// Recent searches
 router.get('/search/recent', (req, res) => {
   const limit = parseInt(req.query.limit || '10', 10);
   db.all('SELECT id, site, query, ts FROM search_stats ORDER BY ts DESC LIMIT ?', [limit], (err, rows) => {
@@ -79,8 +67,6 @@ router.get('/search/recent', (req, res) => {
     res.json(rows || []);
   });
 });
-
-// Clear search history
 router.delete('/search/clear', (req, res) => {
   const { site } = req.query;
   const sql = site ? 'DELETE FROM search_stats WHERE site = ?' : 'DELETE FROM search_stats';
@@ -90,5 +76,4 @@ router.delete('/search/clear', (req, res) => {
     res.json({ cleared: this.changes });
   });
 });
-
 module.exports = router;
