@@ -68,6 +68,10 @@ export default function Navbar() {
               </a>
             </h6>
             <nav className="nav flex-column">
+              <Link className={`nav-link d-flex align-items-center py-2 px-3 small ${location.pathname === '/quick-tools/documents' ? 'active' : ''}`} to="/quick-tools/documents">
+                <i className="fas fa-file-alt mr-3 text-warning"></i>
+                <span>Document Search</span>
+              </Link>
               <a className="nav-link d-flex align-items-center py-2 px-3 small" href="#">
                 <i className="fas fa-bolt mr-3 text-warning"></i>
                 <span>Quick Search</span>

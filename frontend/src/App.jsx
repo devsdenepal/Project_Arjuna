@@ -4,6 +4,7 @@ import Profiles from "./pages/Profiles";
 import Search from "./pages/Search";
 import Analytics from "./pages/Analytics";
 import Database from "./pages/Database";
+import DocumentSearch from "./pages/QuickTools/DocumentSearch";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/database" element={<Database />} />
+            <Route path="/quick-tools/documents" element={<DocumentSearch />} />
           </Routes>
         </div>
       </div>
