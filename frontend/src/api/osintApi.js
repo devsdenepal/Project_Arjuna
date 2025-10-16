@@ -21,6 +21,14 @@ export const getRandomProfile = (gender) =>
   fetch(`${BASE}/profile/random?gender=${gender}`).then((r) => r.json());
 export const googleSearch = (query) =>
   fetch(`${BASE}/google?query=${encodeURIComponent(query)}`).then((r) => r.json());
+export const googleImageSearch = (query, opts = {}) => {
+  const params = new URLSearchParams({ query: query || '', searchType: 'image' });
+  if (opts.imgSize) params.set('imgSize', opts.imgSize);
+  if (opts.imgType) params.set('imgType', opts.imgType);
+  if (opts.imgDominantColor) params.set('imgDominantColor', opts.imgDominantColor);
+  return fetch(`${BASE}/google?${params.toString()}`).then(r => r.json());
+};
+export const imageProxyUrl = (url) => `${BASE}/image-proxy?url=${encodeURIComponent(url)}`;
 export const logSearch = (site, query) =>
   fetch(`${BASE}/search/log`, {
     method: 'POST',

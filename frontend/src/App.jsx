@@ -6,6 +6,7 @@ import Analytics from "./pages/Analytics";
 import Database from "./pages/Database";
 import DocumentSearch from "./pages/QuickTools/DocumentSearch";
 import TechDetect from "./pages/QuickTools/TechDetect";
+import SocialImageSearch from "./pages/QuickTools/SocialImageSearch";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/database" element={<Database />} />
             <Route path="/quick-tools/documents" element={<DocumentSearch />} />
             <Route path="/quick-tools/tech-detect" element={<TechDetect />} />
+            <Route path="/quick-tools/social-images" element={<SocialImageSearch />} />
           </Routes>
         </div>
       </div>

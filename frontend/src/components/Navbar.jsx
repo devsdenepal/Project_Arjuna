@@ -76,6 +76,10 @@ export default function Navbar() {
                 <i className="fas fa-project-diagram mr-3 text-info"></i>
                 <span>Tech Detector</span>
               </Link>
+              <Link className={`nav-link d-flex align-items-center py-2 px-3 small ${location.pathname === '/quick-tools/social-images' ? 'active' : ''}`} to="/quick-tools/social-images">
+                <i className="fas fa-image mr-3 text-pink"></i>
+                <span>Social Images</span>
+              </Link>
               <a className="nav-link d-flex align-items-center py-2 px-3 small" href="#">
                 <i className="fas fa-bolt mr-3 text-warning"></i>
                 <span>Quick Search</span>

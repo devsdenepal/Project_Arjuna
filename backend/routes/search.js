@@ -5,7 +5,19 @@ const db = require('../db');
 router.get('/google', async (req, res) => {
   const { query } = req.query;
   try {
-    const url = `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.GOOGLE_CSE_ID}&q=${encodeURIComponent(query)}`;
+    const params = new URLSearchParams({
+      key: process.env.GOOGLE_API_KEY,
+      cx: process.env.GOOGLE_CSE_ID,
+      q: query || ''
+    });
+    // If caller requests images, forward searchType=image and optional image params
+    if (req.query.searchType === 'image' || req.query.type === 'image') {
+      params.set('searchType', 'image');
+      if (req.query.imgSize) params.set('imgSize', req.query.imgSize);
+      if (req.query.imgType) params.set('imgType', req.query.imgType);
+      if (req.query.imgDominantColor) params.set('imgDominantColor', req.query.imgDominantColor);
+    }
+    const url = `https://www.googleapis.com/customsearch/v1?${params.toString()}`;
     const response = await axios.get(url);
     res.json(response.data.items || []);
   } catch (err) {

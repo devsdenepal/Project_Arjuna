@@ -8,10 +8,12 @@ const searchRoutes = require('./routes/search');
 const profileRoutes = require('./routes/profile');
 const statsRoutes = require('./routes/stats');
 const toolsRoutes = require('./routes/tools');
+const imageProxyRoutes = require('./routes/imageProxy');
 app.use('/api', searchRoutes);
 app.use('/api', profileRoutes);
 app.use('/api', statsRoutes);
 app.use('/api', toolsRoutes);
+app.use('/api', imageProxyRoutes);
 app.get('/api/health', (req, res) => {
 	res.json({ ok: true, routes: ['google','domain','phone','ip','search/log','search/recent','search/clear','profiles','profile','stats','stats/summary','tech-detect'] });
 });
