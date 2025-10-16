@@ -1,4 +1,14 @@
 const BASE = "http://localhost:5000/api";
+
+async function safeJson(res) {
+  const ct = (res.headers && res.headers.get && res.headers.get('content-type')) || '';
+  const text = await res.text();
+  if (!ct || !ct.toLowerCase().includes('application/json')) {
+    const snippet = text ? text.slice(0, 160) : '';
+    throw new Error(`Non-JSON response (${res.status}): ${snippet}`);
+  }
+  try { return JSON.parse(text); } catch (e) { throw new Error(`Invalid JSON (${res.status})`); }
+}
 export const fetchProfiles = () =>
   fetch(`${BASE}/profiles`).then((r) => r.json());
 export const saveProfile = (profile) =>
@@ -20,7 +30,7 @@ export const logSearch = (site, query) =>
 export const getStats = () => fetch(`${BASE}/stats`).then((r) => r.json());
 export const getSummary = () => fetch(`${BASE}/stats/summary`).then((r) => r.json());
 export const getDomainInfo = (domain) =>
-  fetch(`${BASE}/domain?domain=${encodeURIComponent(domain)}`).then((r) => r.json());
+  fetch(`${BASE}/domain?domain=${encodeURIComponent(domain)}`).then(safeJson);
 export const getNumberInfo = (number) =>
   fetch(`${BASE}/phone?number=${encodeURIComponent(number)}`).then((r) => r.json());
 export const getIpInfo = (ip) =>
@@ -30,3 +40,5 @@ export const clearSearches = (site) => {
   const url = site ? `${BASE}/search/clear?site=${encodeURIComponent(site)}` : `${BASE}/search/clear`;
   return fetch(url, { method: 'DELETE' }).then(r => r.json());
 };
+export const detectTech = (url) =>
+  fetch(`${BASE}/tech-detect?url=${encodeURIComponent(url)}`).then(safeJson);
